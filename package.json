@@ -1,0 +1,19 @@
+{
+  "name": "qrcode",
+  "version": "1.0.0",
+  "description": "Backend for QR code scanner",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/adhipradhana/qrcode.git"
+  },
+  "author": "adhipradhana",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/adhipradhana/qrcode/issues"
+  },
+  "homepage": "https://github.com/adhipradhana/qrcode#readme"
+}
