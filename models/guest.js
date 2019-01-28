@@ -17,7 +17,7 @@ const Guest = db.define('guest', {
 Event.hasMany(Guest, { onDelete: 'restrict', onUpdate: 'cascade'});
 
 function createQRCode(guestName, eventId) {
-    let tokenCode = crypto.randomBytes(64).toString("hex");
+    let tokenCode = crypto.randomBytes(32).toString("hex");
 
     let qrcode = qr.image(tokenCode, { type : "pdf"});
     let fileName = `${guestName}-${eventId}.pdf`;
@@ -68,7 +68,6 @@ Guest.updateGuest = (data, callback) => {
         }).then((guest) => {
             return callback(null, guest);
         }).catch((err) => {
-            console.log(err);
             return callback(err);
         });
     }).catch((err) => {
@@ -80,7 +79,6 @@ Guest.deleteGuest = (data, callback) => {
     Guest.findOne({
         where: {id: data.id}
     }).then((guest) => {
-        console.log(guest);
         let fileName = `${guest.name}-${guest.eventId}.pdf`;
 
         // delete file
