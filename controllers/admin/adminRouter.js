@@ -2,7 +2,9 @@ const router = require('express').Router();
 
 const guestAPI = require('./guestController');
 const eventAPI = require('./eventController');
-const userAPI = require('./userController');
+const AdminAuth = require('../../middlewares/adminAuth');
+
+router.use(AdminAuth);
 
 router.get('/', (req, res) => {
     res.json({
@@ -10,9 +12,7 @@ router.get('/', (req, res) => {
         message: "Admin service available"
     })
 });
-
 router.use('/guest', guestAPI);
 router.use('/event', eventAPI);
-router.use('/user', userAPI);
 
 module.exports = router;
