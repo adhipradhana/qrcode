@@ -22,7 +22,7 @@ app.get('/', (req, res) => {
     res.send("Hello World!");
 });
 
-nunjucks.configure('admin/views/html', {
+nunjucks.configure('admin/views/pages', {
     autoescape: true,
     express: app
 });
