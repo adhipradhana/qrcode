@@ -10,7 +10,8 @@ const Guest = db.define('guest', {
     id: { type: Sequelize.INTEGER, primaryKey: true, autoIncrement: true },
     name: { type: Sequelize.STRING, allowNull: false },
     token: { type: Sequelize.STRING, allowNull: false},
-    file: { type: Sequelize.STRING, allowNull: false }
+    file: { type: Sequelize.STRING, allowNull: false },
+    attended: { type: Sequelize.BOOLEAN, allowNull: false }
 });
 
 Event.hasMany(Guest, { onDelete: 'restrict', onUpdate: 'cascade'});
@@ -27,7 +28,8 @@ function createQRCode(guestName, eventId) {
         name: guestName,
         token: tokenCode,
         eventId: eventId,
-        file: fileName
+        file: fileName,
+        attended: false
     };
 }
 
@@ -38,7 +40,8 @@ Guest.createGuest = (data, callback) => {
         name: guestData.name,
         token: guestData.token,
         file: guestData.file,
-        eventId: guestData.eventId
+        eventId: guestData.eventId,
+        attended: guestData.attended
     }).then((guest) => {
         return callback(null, guest);
     }).catch((err) => {
@@ -60,7 +63,8 @@ Guest.updateGuest = (data, callback) => {
             name: updateData.name,
             eventId: updateData.eventId,
             token: updateData.token,
-            file: updateData.file
+            file: updateData.file,
+            attended: updateData.attended
         }).then((guest) => {
             return callback(null, guest);
         }).catch((err) => {
