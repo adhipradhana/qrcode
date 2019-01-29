@@ -2,10 +2,6 @@ const router = require('express').Router();
 
 const User = require('../../models/user');
 
-router.get('/', (req, res) => {
-    res.render('login.njk');
-});
-
 router.post('/', (req, res) => {
     let body = {
         username: req.body.username,
@@ -14,11 +10,11 @@ router.post('/', (req, res) => {
 
     User.login(body, (err, token) => {
         if (err) {
-            return res.render('login.njk');
+            return res.sendFile('login.html', { root: __dirname });
         }
 
         res.cookie("jwtToken", token, { maxAge: oneDay() });
-        return res.render('guest.njk');
+        return res.render('guest.html', { root: __dirname });
     });
 });
 

@@ -2,29 +2,40 @@ const router = require('express').Router();
 
 const Guest = require('../../models/guest');
 
-router.get('/', (req, res) => {
-    res.render('guest.njk');
-});
-
 router.post('/create', (req, res) => {
     let body = {
         name: req.body.name,
         eventId: req.body.eventId
     }
 
-    Guest.createGuest(body, (err, data) => {
-        if (err) {
+    Guest.findOne({ where: { name: body.name,eventId: body.eventId}})
+    .then((guest) => {
+        if (guest) {
             return res.json({
                 status: "failed",
-                message: err.message
+                message: "User has already been created"
             });
         }
 
+        Guest.createGuest(body, (err, data) => {
+            if (err) {
+                return res.json({
+                    status: "failed",
+                    message: err.message
+                });
+            }
+    
+            return res.json({
+                status: "success",
+                message: "Guest successfully created",
+                data: data
+            })
+        });
+    }).catch((err) => {
         return res.json({
-            status: "success",
-            message: "Guest successfully created",
-            data: data
-        })
+            status: "failed",
+            message: "Internal error"
+        });
     });
 });
 

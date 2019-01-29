@@ -1,12 +1,16 @@
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
-const nunjucks = require('nunjucks');
 const cookieParser = require('cookie-parser');
 
 // import api endpoint
-const api = require('./api/router');
-const admin = require('./admin/router');
+const androidAPI = require('./android/router');
+const adminAPI = require('./admin/controllers/router'); 
+const api = require('express').Router();
+const tokenAuth = require('./middlewares/tokenAuth');
+
+// import admin page
+const admin = require('./admin/views/index');
 
 // port number
 const PORT = 8000;
@@ -19,16 +23,15 @@ app.use(bodyParser.urlencoded({ extended : true}));
 app.use(cookieParser());
 
 app.get('/', (req, res) => {
-    res.send("Hello World!");
-});
-
-nunjucks.configure('admin/views/pages', {
-    autoescape: true,
-    express: app
+    res.redirect('/admin');
 });
 
 app.use('/admin', admin);
 app.use('/api', api);
+
+api.use(tokenAuth);
+api.use('/admin', adminAPI);
+api.use('/android', androidAPI);
 
 app.listen(PORT, "localhost", () => {
     console.log(`listening to port ${PORT}`);

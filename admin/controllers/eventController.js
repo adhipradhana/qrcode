@@ -2,10 +2,6 @@ const router = require('express').Router();
 
 const Event = require('../../models/event');
 
-router.get('/', (req, res) => {
-    res.render('event.njk');
-});
-
 router.post('/create', (req, res) => {
     let body = {
         name: req.body.name

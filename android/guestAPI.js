@@ -51,19 +51,26 @@ router.post('/guest', (req, res) => {
     if (token) {
         Guest.findOne({ where: {token: token} })
         .then((guest) => {
-            guest.update({
-                attended: true
-            }).then((guest) => {
-                res.send({
-                    status: "success",
-                    message: `${guest.name} has attended!`
-                });
-            }).catch((err) => {
-                res.send({
+            if (guest.attended) {
+                res.json({
                     status: "failed",
-                    message: "Failed to update guest"
+                    message: `Error : ${guest.name} already attended`
                 });
-            });
+            } else {
+                guest.update({
+                    attended: true
+                }).then((guest) => {
+                    res.send({
+                        status: "success",
+                        message: `Welcome ${guest.name}`
+                    });
+                }).catch((err) => {
+                    res.send({
+                        status: "failed",
+                        message: "Failed to update guest"
+                    });
+                });
+            }
         }).catch((err) => {
             res.json({
                 status: "failed",
