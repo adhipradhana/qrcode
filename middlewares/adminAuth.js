@@ -7,7 +7,7 @@ var authenticateAdmin = (req, res, next) => {
             message: 'Not authorized' 
         });
     }
-
+    
     next();
 }
 

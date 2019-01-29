@@ -10,11 +10,16 @@ router.post('/', (req, res) => {
 
     User.login(body, (err, token) => {
         if (err) {
-            return res.sendFile('login.html', { root: __dirname });
+            return res.json({
+                status: "failed",
+                message: err.message
+            })
         }
 
-        res.cookie("jwtToken", token, { maxAge: oneDay() });
-        return res.render('guest.html', { root: __dirname });
+        return res.json({
+            status: "success",
+            token: token
+        })
     });
 });
 
