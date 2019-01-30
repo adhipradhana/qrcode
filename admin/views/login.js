@@ -2,7 +2,7 @@ const router = require('express').Router();
 
 const User = require('../../models/user');
 
-router.post('/', (req, res) => {
+router.post('/login', (req, res) => {
     let body = {
         username: req.body.username,
         password: req.body.password
@@ -10,17 +10,19 @@ router.post('/', (req, res) => {
 
     User.login(body, (err, token) => {
         if (err) {
-            return res.json({
-                status: "failed",
-                message: err.message
-            })
+            return res.redirect('/');
         }
 
-        return res.json({
-            status: "success",
-            token: token
-        })
+        res.cookie("jwtToken", token, { maxAge: oneDay() });
+        res.redirect('/admin/dashboard');
     });
+});
+
+router.post('/logout', (req, res) => {
+    clearCookie("jwtToken");
+
+    // redirect to home page
+    res.redirect('/');
 });
 
 function oneDay() {

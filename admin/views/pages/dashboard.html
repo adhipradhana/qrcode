@@ -3,23 +3,30 @@
 <header>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Event</title>
+    <title>Dashboard</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/admin/views/css/dashboard.css">
 </header>
 <body>
-    <nav class="navbar navbar-expand-sm bg-light">
-        <ul class="navbar-nav">
-            <li class="nav-item">
-                <a class="nav-link" href="#">Guest</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Event</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Logout</a>
-            </li>
-        </ul>
+    <nav class="navbar navbar-expand-lg fixed-top ">  
+        <a class="navbar-brand" href="#">Admin</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">  
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">     
+            <ul class="navbar-nav mr-4">
+                <li class="nav-item">
+                    <a class="nav-link" data-value="dashboard" href="#">Dashboard</a>        
+                </li>  
+                <li class="nav-item">
+                    <a class="nav-link " data-value="guest" href="#">Guest</a>    
+                </li>
+                <li class="nav-item"> 
+                    <a class="nav-link " data-value="event" href="#">Event</a>         
+                </li>   
+            </ul> 
+       </div>
     </nav>
 </body>
 </html>

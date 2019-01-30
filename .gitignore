@@ -83,3 +83,5 @@ typings/
 *.pdf
 
 .DS_Store
+
+.vscode

@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const authRouter = require('express').Router();
 
+const login = require('./login');
 const pageAuth = require('../../middlewares/pageAuth');
 
 var pagesDirectory = __dirname + "/pages/";
@@ -9,6 +10,7 @@ router.get('/', (req, res) => {
     res.sendFile('login.html', { root: pagesDirectory });
 });
 
+router.use(login);
 router.use(authRouter);
 authRouter.use(pageAuth);
 
