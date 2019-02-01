@@ -1,5 +1,5 @@
 .navbar { 
-    background:#F97300;
+    background:#222538;
 }
 
 .nav-link { 
@@ -7,9 +7,13 @@
     cursor: pointer;
 }
 
+.active {
+    background: #f4f4f4; 
+    color: #222538; 
+}
+
 .navbar-brand { 
     color: #f4f4f4; 
-    cursor: pointer;
 }
 
 .nav-link{ 
@@ -18,7 +22,7 @@
 
 .nav-link:hover{ 
     background: #f4f4f4; 
-    color: #f97300; 
+    color: #222538; 
 }
 
 .navbar-collapse{ 
@@ -27,4 +31,9 @@
 
 .navbar-toggler{  
     background:#fff !important;
+}
+
+#content-container {
+    margin-top: 10%;
+    margin-left: 5%;
 }

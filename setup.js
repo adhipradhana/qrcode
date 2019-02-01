@@ -34,7 +34,8 @@ db.sync({ force: true }).then(() => {
         }
     });
     Event.create({
-        name: "Gala Dinner"
+        name: "Gala Dinner",
+        date: new Date("2019-02-09")
     });
     Guest.createGuest({
         name: "Yoo Jeongyeon",
