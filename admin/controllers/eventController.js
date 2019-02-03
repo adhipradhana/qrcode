@@ -4,20 +4,22 @@ const Event = require('../../models/event');
 
 router.post('/create', (req, res) => {
     let body = {
-        name: req.body.name
+        name: req.body.name,
+        date: req.body.date
     }
 
     Event.create({
-        name: body.name
+        name: body.name,
+        date: body.date
     }).then((event) => {
         return res.json({
-            status: "success",
+            success: true,
             message: "Event data created",
             data: event
         });
     }).catch((err) => {
         return res.json({
-            status: "failed",
+            success: false,
             message: err.message
         })
     });
@@ -33,7 +35,7 @@ router.post('/update', (req, res) => {
     .then((event) => {
         if (!event) {
             return res.json({
-                status: "failed",
+                success: false,
                 message: "Event not found"
             });
         }
@@ -42,19 +44,19 @@ router.post('/update', (req, res) => {
             name: body.name
         }).then((event) => {
             return res.json({
-                status: "success",
+                success: true,
                 message: "Event successfully updated",
                 data: event
             });
         }).catch((err) => {
             return res.json({
-                status: "failed",
+                success: false,
                 message: err.message
             });
         });
     }).catch((err) => {
         return res.json({
-            status: "failed",
+            success: false,
             message: err.message
         });
     }); 
@@ -69,7 +71,7 @@ router.post('/delete', (req, res) => {
     .then((event) => {
         if (!event) {
             return res.json({
-                status: "failed",
+                success: false,
                 message: "Event not found"
             })
         }
@@ -77,18 +79,18 @@ router.post('/delete', (req, res) => {
         event.destroy().
         then(() => {
             return res.json({
-                status: "success",
+                success: true,
                 message: "Event successfully deleted"
             });
         }).catch((err) => {
             return res.json({
-                status: "failed",
+                success: false,
                 message: err.message
             });
         });
     }).catch((err) => {
         return res.json({
-            status: "failed",
+            success: false,
             message: err.message
         });
     }); 
@@ -98,12 +100,12 @@ router.get('/list', (req, res) => {
     Event.findAll()
     .then((events) => {
         return res.json({
-            status: "success",
+            success: true,
             data: events
         })
     }).catch((err) => {
         return res.json({
-            status: "failed",
+            success: false,
             message: err.message
         });
     });

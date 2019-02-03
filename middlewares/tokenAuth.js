@@ -21,7 +21,7 @@ var authenticateToken = (req, res, next) => {
         jwt.verify(token, jwtKey, (err, decoded) => {
             if (err) {
                 return res.json({
-                    status: "failed",
+                    success: false,
                     message: 'Token is not valid'
                 });
             } else {
@@ -31,7 +31,7 @@ var authenticateToken = (req, res, next) => {
         });
     } else {
         return res.json({
-            status: "failed",
+            success: false,
             message: 'Auth token is not supplied'
         });
     }

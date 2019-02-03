@@ -12,7 +12,7 @@ router.post('/create', (req, res) => {
     .then((guest) => {
         if (guest) {
             return res.json({
-                status: "failed",
+                success: false,
                 message: "User has already been created"
             });
         }
@@ -20,20 +20,20 @@ router.post('/create', (req, res) => {
         Guest.createGuest(body, (err, data) => {
             if (err) {
                 return res.json({
-                    status: "failed",
+                    success: false,
                     message: err.message
                 });
             }
     
             return res.json({
-                status: "success",
+                success: true,
                 message: "Guest successfully created",
                 data: data
             })
         });
     }).catch((err) => {
         return res.json({
-            status: "failed",
+            success: false,
             message: "Internal error"
         });
     });
@@ -49,13 +49,13 @@ router.post('/update', (req, res) => {
     Guest.updateGuest(body, (err, data) => {
         if (err) {
             return res.json({
-                status: "failed",
+                success: false,
                 message: err.message
             });
         }
 
         return res.json({
-            status: "success",
+            success: true,
             message: "Guest data updated",
             data: data
         })
@@ -70,13 +70,13 @@ router.post('/delete', (req, res) => {
     Guest.deleteGuest(body, (err) => {
         if (err) {
             return res.json({
-                status: "failed",
+                success: false,
                 message: err.message
             });
         }
 
         return res.json({
-            status: "success",
+            success: true,
             message: "Guest data deleted"
         });
     });
@@ -89,12 +89,12 @@ router.get('/list', (req, res) => {
         Guest.findAll()
         .then((guests) => {
             return res.json({
-                status: "success",
+                success: true,
                 data: guests
             });
         }).catch((err) => {
             return res.json({
-                status: "failed",
+                success: false,
                 message: err.message
             })
         });
@@ -102,12 +102,12 @@ router.get('/list', (req, res) => {
         Guest.findAll({ where: {eventId: eventId}})
         .then((guests) => {
             return res.json({
-                status: "success",
+                success: true,
                 data: guests
             });
         }).catch((err) => {
             return res.json({
-                status: "failed",
+                success: false,
                 message: err.message
             })
         });

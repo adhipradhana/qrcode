@@ -21,21 +21,24 @@
                     <a class="nav-link active" data-value="dashboard" href="/admin/dashboard">Dashboard</a>        
                 </li>  
                 <li class="nav-item">
-                    <a class="nav-link " data-value="guest" href="/admin/guest">Guest</a>    
+                    <a class="nav-link" data-value="guest" href="/admin/guest">Guest</a>    
                 </li>
                 <li class="nav-item"> 
-                    <a class="nav-link " data-value="event" href="/admin/event">Event</a>         
+                    <a class="nav-link" data-value="event" href="/admin/event">Event</a>         
                 </li>   
+                <li class="nav-item"> 
+                    <a class="nav-link" data-value="logout" href="/admin/logout">Logout</a>         
+                </li>  
             </ul> 
        </div>
     </nav>
     <div id="content-container">
         <ul class="nav nav-tabs" role="tablist">
             <li class="nav-item">
-                <a class="nav-link active" data-toggle="tab" href="#guest">Guest</a>
+                <a id="guest-tab" class="nav-link active content-tab" data-toggle="tab" href="#guest">Guest</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" href="#event">Event</a>
+                <a id="event-tab" class="nav-link content-tab" data-toggle="tab" href="#event">Event</a>
             </li>
         </ul>
         <div class="tab-content">
@@ -45,12 +48,14 @@
                         <tr>
                             <th>ID</th>
                             <th>Name</th>
+                            <th>Event</th>
                             <th>Token</th>
                             <th>File</th>
                             <th>Attended</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
-                    <tbody id="body-table">
+                    <tbody id="body-table-guest">
 
                     </tbody>
                 </table>
@@ -62,14 +67,17 @@
                             <th>ID</th>
                             <th>Name</th>
                             <th>Date</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
-                    <tbody id="body-table">
+                    <tbody id="body-table-event">
 
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="/static/js/dashboard.js"></script>
 </body>
 </html>

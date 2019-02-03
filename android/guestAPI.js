@@ -5,7 +5,7 @@ const Event = require('../models/event');
 
 router.get('/', (req, res) => {
     res.json({
-        status: "success",
+        success: true,
         message: "Android service available"
     })
 });
@@ -19,7 +19,7 @@ router.get('/guest', (req, res) => {
             Event.findOne({ where: {id: guest.eventId}})
             .then((event) => {
                 res.json({
-                    status: "success",
+                    success: true,
                     data: {
                         name: guest.name,
                         event: event.name
@@ -27,19 +27,19 @@ router.get('/guest', (req, res) => {
                 });
             }).catch((err) => {
                 res.json({
-                    status: "failed",
+                    success: false,
                     message: err.message
                 }); 
             });
         }).catch((err) => {
             res.json({
-                status: "failed",
+                success: false,
                 message: err.message
             }); 
         });
     } else {
         res.json({
-            status: "failed",
+            success: false,
             message: "User token not given"
         });
     }
@@ -53,7 +53,7 @@ router.post('/guest', (req, res) => {
         .then((guest) => {
             if (guest.attended) {
                 res.json({
-                    status: "failed",
+                    success: false,
                     message: `Error : ${guest.name} already attended`
                 });
             } else {
@@ -61,25 +61,25 @@ router.post('/guest', (req, res) => {
                     attended: true
                 }).then((guest) => {
                     res.send({
-                        status: "success",
+                        success: true,
                         message: `Welcome ${guest.name}`
                     });
                 }).catch((err) => {
                     res.send({
-                        status: "failed",
+                        success: false,
                         message: "Failed to update guest"
                     });
                 });
             }
         }).catch((err) => {
             res.json({
-                status: "failed",
+                success: false,
                 message: err.message
             }); 
         });
     } else {
         res.json({
-            status: "failed",
+            success: false,
             message: "User token not given"
         });
     }

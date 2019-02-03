@@ -3,7 +3,7 @@ var authenticateAdmin = (req, res, next) => {
 
     if (!admin) {
         res.json({
-            status: "failed",
+            success: false,
             message: 'Not authorized' 
         });
     }

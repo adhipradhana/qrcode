@@ -18,8 +18,8 @@ router.post('/login', (req, res) => {
     });
 });
 
-router.post('/logout', (req, res) => {
-    clearCookie("jwtToken");
+router.get('/logout', (req, res) => {
+    res.clearCookie("jwtToken");
 
     // redirect to home page
     res.redirect('/');

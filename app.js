@@ -28,6 +28,7 @@ app.get('/', (req, res) => {
 
 app.use('/admin', admin);
 app.use('/api', api);
+app.use('/files', express.static(__dirname + '/files'));
 app.use('/static', express.static(__dirname + '/admin/views/pages'));
 
 api.use(tokenAuth);
