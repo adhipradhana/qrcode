@@ -28,19 +28,19 @@ router.get('/guest', (req, res) => {
             }).catch((err) => {
                 res.json({
                     success: false,
-                    message: "User not found"
+                    message: "Event not found"
                 }); 
             });
         }).catch((err) => {
             res.json({
                 success: false,
-                message: "User not found"
+                message: "Guest not found"
             }); 
         });
     } else {
         res.json({
             success: false,
-            message: "User token not given"
+            message: "Guest token not given"
         });
     }
 });
@@ -74,13 +74,13 @@ router.post('/guest', (req, res) => {
         }).catch((err) => {
             res.json({
                 success: false,
-                message: "Internal server error"
+                message: "Guest not found"
             }); 
         });
     } else {
         res.json({
             success: false,
-            message: "User token not given"
+            message: "Guest token not given"
         });
     }
 });
