@@ -141,6 +141,12 @@ $('#guest-tab').on('click', () => {
     $('#guest').addClass("active");
 });
 
+$('#download-button').on('click', (e) => {
+    e.preventDefault();
+
+    window.open('/api/admin/guest/download', '_blank');
+});
+
 function getCookie(cookiename) {
     var cookiestring = RegExp(""+cookiename+"[^;]+").exec(document.cookie);
 

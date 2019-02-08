@@ -1,4 +1,6 @@
 const router = require('express').Router();
+const fs = require('fs');
+const zipFolder = require('zip-a-folder');
 
 const Guest = require('../../models/guest');
 
@@ -109,9 +111,22 @@ router.get('/list', (req, res) => {
             return res.json({
                 success: false,
                 message: err.message
-            })
+            });
         });
     }
+});
+
+router.get('/download', (req, res) => {
+    zipFolder.zipFolder(__dirname + '/../../files', __dirname + '/../zip/pdf.zip', (err) => {
+        if (err) {
+            return res.json({
+                success: false,
+                message: "Error : failed to zip file"
+            });
+        }
+
+        return res.download(__dirname + '/../zip/pdf.zip');
+    });
 });
 
 module.exports = router;

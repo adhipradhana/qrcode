@@ -10,7 +10,7 @@ if (vars.error) {
 const jwtKey = fs.readFileSync(process.env.JWT_PATH, 'utf8');
 
 var authenticateToken = (req, res, next) => {
-    let token = req.headers['x-access-token'] || req.headers['authorization'];
+    let token = req.headers['x-access-token'] || req.headers['authorization'] || req.cookies.jwtToken;
     
     if (token) {
         if (token.startsWith('Bearer ')) {
