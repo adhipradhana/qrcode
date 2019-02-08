@@ -28,13 +28,13 @@ router.get('/guest', (req, res) => {
             }).catch((err) => {
                 res.json({
                     success: false,
-                    message: err.message
+                    message: "User not found"
                 }); 
             });
         }).catch((err) => {
             res.json({
                 success: false,
-                message: err.message
+                message: "User not found"
             }); 
         });
     } else {
@@ -74,7 +74,7 @@ router.post('/guest', (req, res) => {
         }).catch((err) => {
             res.json({
                 success: false,
-                message: err.message
+                message: "Internal server error"
             }); 
         });
     } else {
